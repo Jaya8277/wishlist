@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Page</title>
+    <link rel="stylesheet" href="./index.css" />
+
+</head>
+
+<body>
+    <section id="nav">
+        <li><a href="./index.html">Product</a></li>
+        <li><a href="./wishlist.html">Wishlist</a></li>
+
+    </section>
+    <div>
+        <select name="Sort" id="sorting">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+
+        </select>
+
+        <select name="filter" id="Filter">
+            <option value="kids">Kids</option>
+            <option value="homedecor">Homedecor</option>
+            <option value="women">Women</option>
+
+            <option value="men">Men</option>
+        </select>
+
+    </div>
+    <div id="container"></div>
+
+
+</body>
+
+</html>
+<script>
+    // function pagi(proddata) {
+    //     var html = '<ul>';
+    //     $.each(proddata, function(index, item){
+    //         html += '<li>'+ item +'</li>';
+    //     });
+    //     html += '</ul>';
+    //     return html;
+    //     $('#pagination-container').pagination({
+    //     dataSource: [1, 2, 3, 4, 5, 6, 7,8,9,10],
+    //     callback: function(proddata, pagination) {
+    //         var html = pagi(proddata);
+    //         $('#container').html(html);
+    //     }
+    // })
+    // }
+    var wishlistpage = JSON.parse(localStorage.getItem('wishlistpage')) || [];
+    console.log(wishlistpage)
+
+    let container = document.getElementById("container");
+    document.getElementById("sorting").addEventListener("change", SortBy)
+
+    function SortBy() {
+        let sortdata2 = document.getElementById("sorting").value
+        const url = `https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-products?page=${1}&limit=40&orderBy=${sortdata2}`
+
+
+
+        fetch(url).then(function (ans) {
+            return ans.json()
+        })
+            .then(function (ans) {
+                console.log(ans)
+                display(ans.data)
+            }).catch(function (err) {
+                console.log(err)
+            })
+    }
+
+
+    document.getElementById("Filter").addEventListener("change", Filtringdata)
+
+    function Filtringdata() {
+        let FilterData = document.getElementById("Filter").value
+        const url = `https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-products?filter=men&page=${1}&limit=12`
+
+
+
+        fetch(url).then(function (ans) {
+            return ans.json()
+        })
+            .then(function (ans) {
+                console.log(ans)
+                display(ans.data)
+            }).catch(function (err) {
+                console.log(err)
+            })
+    }
+    fetchdata();
+    async function fetchdata() {
+        try {
+            let ans = await fetch(
+                `https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-products?page=${1}&limit=12&orderBy=asc`
+            );
+
+            let proddata = await ans.json();
+            data = proddata.data
+            display(data);
+            console.log(data);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    function display(data) {
+        container.innerHTML = null;
+
+        data.forEach(function (elem) {
+
+            let div = document.createElement("div");
+            div.setAttribute("id", "div");
+
+            var img = document.createElement("img");
+            img.setAttribute("src", elem.image);
+            img.setAttribute("id", "poster");
+
+            let div1 = document.createElement("div");
+            div1.setAttribute("id", "div1");
+            let brand = document.createElement("p");
+            brand.innerText = elem.brand;
+
+            let Year = document.createElement("p");
+            Year.innerText = elem.category;
+
+            let Price = document.createElement("p");
+            Price.innerText = "$" + elem.price;
+
+            let Title = document.createElement("p");
+            Title.innerText = elem.title;
+
+
+            let div2 = document.createElement("div");
+            div2.setAttribute("id", "div2");
+
+
+            let div4 = document.createElement("div");
+            div4.setAttribute("id", "div4");
+
+            let wish = document.createElement("button")
+            wish.innerText = "❤️"
+            wish.setAttribute("class", "btn");
+
+
+            wish.addEventListener('click', function () {
+                if (!wishlistpage.includes(elem)) {
+                    wishlistpage.push(elem);
+
+                    localStorage.setItem('wishlistpage', JSON.stringify(wishlistpage));
+                    alert('Added To wishlist')
+                    window.location.href = "wishlist.html"
+
+
+                }
+            });
+            div2.append(wish)
+
+            div1.append(Title, Price);
+
+
+            div4.append(div1, div2)
+
+
+            div.append(img, div4);
+            container.append(div);
+        });
+    }
+</script>

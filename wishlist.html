@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wishlist Page</title>
+    <link rel="stylesheet" href="./wishlist.css" />
+</head>
+
+<body>
+    <section id="nav">
+        <li><a href="./index.html">Product</a></li>
+        <li><a href="./wishlist.html">Wishlist</a></li>
+
+    </section>
+    <div id="container"></div>
+</body>
+
+</html>
+<script>
+    var wishlistpage = JSON.parse(localStorage.getItem("wishlistpage")) || [];
+    display(wishlistpage);
+    console.log(wishlistpage);
+    function display(wishlistpage) {
+        container.innerHTML = null;
+
+        wishlistpage.forEach(function (elem) {
+            let div = document.createElement("div");
+            div.setAttribute("id", "div");
+
+            var img = document.createElement("img");
+            img.setAttribute("src", elem.image);
+            img.setAttribute("id", "poster");
+
+            let div1 = document.createElement("div");
+            div1.setAttribute("id", "div1");
+            let brand = document.createElement("p");
+            brand.innerText = elem.brand;
+
+            let Year = document.createElement("p");
+            Year.innerText = elem.category;
+
+            let Price = document.createElement("p");
+            Price.innerText = "$" + elem.price;
+
+            let Title = document.createElement("p");
+            Title.innerText = elem.title;
+
+            let div2 = document.createElement("div");
+            div2.setAttribute("id", "div2");
+
+            let div3 = document.createElement("div");
+            div3.setAttribute("id", "div3");
+            div1.append(Title, Price);
+
+            div3.append(div1);
+
+            div.append(img, div3);
+            container.append(div);
+        });
+    }
+</script>

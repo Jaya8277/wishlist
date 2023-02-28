@@ -1,0 +1,126 @@
+#container {
+   border-radius: 6px;
+   display: grid;
+   margin: auto;
+   width: 90%;
+   grid-template-columns: repeat(4, 1fr);
+   grid-template-rows: repeat(4, 500);
+   border: 1px solid;
+   gap: 20px;
+   height: 60%;
+   padding: 10px;
+   background-color: white;
+   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+}
+
+div {
+
+   border-radius: 10px;
+   width: 100%;
+
+}
+
+button {
+   background-color: rgb(101, 106, 106);
+   border: none;
+   height: 40px;
+   width: 40px;
+   font-size: 30px;
+   border-radius: 6px;
+   padding: 2px;
+   margin-left: 60px;
+}
+
+img {
+   width: 60%;
+   margin-left: 70px;
+
+}
+
+p {
+   margin-left: 50px;
+}
+
+#div4 {
+   display: flex;
+}
+
+@media only screen and (max-width: 908px) {
+
+   #container {
+      border-radius: 6px;
+      display: grid;
+      margin: auto;
+      width: 90%;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(4, 500);
+      border: 1px solid;
+      gap: 20px;
+      padding: 10px;
+      border: 1px solid rgba(1, 90, 93, 0.979);
+      background-color: white;
+   }
+
+}
+
+@media only screen and (max-width: 590px) {
+
+   #container {
+      border-radius: 6px;
+      display: grid;
+      margin: auto;
+      width: 90%;
+      grid-template-columns: repeat(1, 1fr);
+      grid-template-rows: repeat(4, 500);
+      border: 1px solid;
+      gap: 20px;
+      padding: 10px;
+      border: 1px solid rgba(1, 90, 93, 0.979);
+      background-color: white;
+   }
+
+}
+
+#nav {
+   display: flex;
+   height: 60px;
+   width: 90%;
+   border-radius: 10px;
+   padding-top: 20px;
+   margin: auto;
+   background-color: rgba(101, 103, 103, 0.979);
+   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+   justify-content: space-evenly;
+   margin-bottom: 20px;
+}
+
+#nav li a {
+   font-size: 30px;
+   margin-left: 60px;
+   text-decoration: none;
+   color: white;
+}
+
+#nav li {
+   padding-bottom: 40px;
+   list-style: none;
+}
+
+#sorting {
+   background-color: rgb(0, 0, 0);
+   color: white;
+   font-size: 20px;
+   padding: 5px;
+   margin-bottom: 10px;
+   border-radius: 10px;
+}
+
+#Filter {
+   background-color: rgb(0, 0, 0);
+   color: white;
+   font-size: 20px;
+   padding: 5px;
+   margin-bottom: 10px;
+   border-radius: 10px;
+}
